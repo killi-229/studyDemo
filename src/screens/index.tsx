@@ -1,7 +1,8 @@
-import List from  './list'
+import List from './list'
 import SearchPanel from './search-panel'
 import {useEffect, useState} from "react";
-import qs from "qs";
+import * as qs from "qs";
+
 import {cleanObject, useDebounce, useMount} from "../utils";
 const BaseUrl = process.env.REACT_APP_API_URL
 const ProjectListScreen = () => {
@@ -28,7 +29,7 @@ const ProjectListScreen = () => {
 
 
     return <div className="ProjectListScreen">
-        <SearchPanel param={param} setParam={setParam} list={list} users={users}/>
+        <SearchPanel param={param} setParam={setParam} users={users}/>
         <List list={list} users={users}/>
     </div>
 }
