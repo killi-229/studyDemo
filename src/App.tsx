@@ -1,10 +1,11 @@
+import React from 'react';
 import './App.css';
 import Screens from "./screens";
 function App() {
   return (
-    <div className="App">
-     <Screens/>
-    </div>
+      <div className="App">
+        <Screens/>
+      </div>
   );
 }
 

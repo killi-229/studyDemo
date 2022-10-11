@@ -1,15 +1,17 @@
 import {useEffect, useState} from "react";
 
 // 判断是否零
-export const isFalsy = (v) => v === 0 ? false : !v
+export const isFalsy = (v:number) => v === 0 ? false : !v
 
 // 删除对象空值
 export const cleanObject = (o:object) => {
     const ret = {...o}
 
     Object.keys(ret).forEach(k => {
+        // @ts-ignore
         const v = ret[k]
         if(!v){
+            // @ts-ignore
             delete ret[k]
         }
     })
