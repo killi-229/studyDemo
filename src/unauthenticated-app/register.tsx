@@ -1,6 +1,5 @@
 import {SyntheticEvent} from "react";
 import {useAuth} from "../context/auth-context";
-const BaseUrl = process.env.REACT_APP_API_URL
 
 const RegisterScreen = () => {
     const {register} = useAuth()

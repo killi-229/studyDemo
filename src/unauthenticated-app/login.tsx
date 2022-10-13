@@ -1,11 +1,8 @@
-import {FormEventHandler, SyntheticEvent} from "react";
-import * as qs from "qs";
-import {cleanObject} from "../utils";
+import { SyntheticEvent} from "react";
 import {useAuth} from "../context/auth-context";
-const BaseUrl = process.env.REACT_APP_API_URL
 
 const LoginScreen = () => {
-    const {login,user} = useAuth()
+    const {login} = useAuth()
     const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault()
         const username = (event.currentTarget.elements[0] as HTMLInputElement).value
