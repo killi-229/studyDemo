@@ -1,15 +1,16 @@
 import React from 'react';
 import './App.css';
-import Screens from "./screens";
-import Login from "./LoginScreen/login";
-import Register from "./LoginScreen/register";
+import UnauthenticatedApp from "./unauthenticated-app";
+import AuthenticatedApp from "./authenticated-app";
+import {useAuth} from "./context/auth-context";
 
 function App() {
+    const {user} = useAuth()
   return (
       <div className="App">
-        {/*<Screens/>*/}
-        {/*  <Login/>*/}
-          <Register/>
+          {
+              user? <AuthenticatedApp/> : <UnauthenticatedApp />
+          }
       </div>
   );
 }
