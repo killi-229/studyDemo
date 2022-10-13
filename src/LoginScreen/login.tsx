@@ -1,27 +1,18 @@
 import {FormEventHandler, SyntheticEvent} from "react";
 import * as qs from "qs";
 import {cleanObject} from "../utils";
+import {useAuth} from "../context/auth-context";
 const BaseUrl = process.env.REACT_APP_API_URL
 
-const Login = () => {
+const LoginScreen = () => {
+    const {login,user} = useAuth()
     const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault()
         const username = (event.currentTarget.elements[0] as HTMLInputElement).value
         const password = (event.currentTarget.elements[1] as HTMLInputElement).value
-        submit({username, password})
+        login({username, password})
     }
 
-    const submit = (param:{username:string; password:string}) => {
-        fetch(`${BaseUrl}/login`, {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(param)
-        }).then(async (res) => {
-            console.log(res)
-        })
-    }
 
 
     return <form onSubmit={handleSubmit}>
@@ -42,4 +33,4 @@ const Login = () => {
     </form>
 }
 
-export default Login
+export default LoginScreen

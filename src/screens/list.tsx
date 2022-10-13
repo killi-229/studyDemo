@@ -1,16 +1,16 @@
 import {User} from "./search-panel";
 
 interface Project {
-    id: string,
-    name: string,
-    personId: string,
-    pin: boolean,
-    organization: string
+    id: string;
+    name: string;
+    personId: string;
+    pin: boolean;
+    organization: string;
 }
 
 interface ListProps {
-    list: Project[],
-    users: User[]
+    list: Project[];
+    users: User[];
 }
 
 const List = ({list,users}:ListProps) => {
