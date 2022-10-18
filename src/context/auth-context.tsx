@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import * as auth from '../utils/auth-provider'
 import {User} from "../screens/search-panel";
 import {AppProvider} from "./index";
+import Http from "../utils/http";
+import {useMount} from "../utils";
 
 
 interface AuthForm {
@@ -17,11 +19,21 @@ interface AuthContext {
     logout: () => Promise<void>
 }
 
+// 检查是否登陆获取用户数据
+const initUser = async () => {
+    let user = null
+    const token = auth.getToken()
+    if(token){
+        const data = await Http('me', {token})
+        user = data.user
+    }
+
+    return user
+}
+
 
 const AuthContext = React.createContext<AuthContext|undefined>(undefined)
 AuthContext.displayName = "AuthContext"
-
-
 
 export const AuthProvider = ({children}:AppProvider) => {
     const [user, setUser] = useState<User | null>(null)
@@ -31,6 +43,10 @@ export const AuthProvider = ({children}:AppProvider) => {
     const register = (form:AuthForm) => auth.register(form).then(setUser)  // then(user => setUser(user))  ===  then(setUser)
     const logout = () => auth.logout().then(() => setUser(null))
 
+    // 页面第一次进来获取用户数据
+    useMount(() => {
+        initUser().then(setUser)
+    })
 
     // 把接口传递到每个组件可以用
     return (
